@@ -30,7 +30,7 @@
 		[self setMovableByWindowBackground:NO];
 		[self setBackgroundColor:[self sizedBezelBackgroundWithRadius:25.0 withAlpha:[[NSUserDefaults standardUserDefaults] floatForKey:@"bezelAlpha"]]];
 		float lineHeight = 16;
-		NSRect textFrame = NSMakeRect(12, 12, [self frame].size.width - 24, 8 * lineHeight);
+		NSRect textFrame = NSMakeRect(12, 12, [self frame].size.width - 24, 16 * lineHeight);
 		textField = [[RoundRecTextField alloc] initWithFrame:textFrame];
 		[[self contentView] addSubview:textField];
 		[textField setEditable:NO];
@@ -38,8 +38,9 @@
 		[textField setBackgroundColor:[NSColor colorWithCalibratedWhite:0.1 alpha:.45]];
 		[textField setDrawsBackground:YES];
 		[textField setBordered:NO];
-		[textField setAlignment:NSCenterTextAlignment];
-		NSRect charFrame = NSMakeRect(([self frame].size.width - (2 * lineHeight)) / 2, 150, 1.75 * lineHeight, 1.75 * lineHeight);
+		[textField setAlignment:NSLeftTextAlignment];
+		[textField setFont: [NSFont fontWithName: @"Monaco" size: 12]];
+		NSRect charFrame = NSMakeRect(([self frame].size.width - (2 * lineHeight)) / 2, 280, 1.75 * lineHeight, 1.75 * lineHeight);
 		charField = [[RoundRecTextField alloc] initWithFrame:charFrame];
 		[[self contentView] addSubview:charField];
 		[charField setEditable:NO];
@@ -49,13 +50,6 @@
 		[charField setBordered:NO];
 		[charField setAlignment:NSCenterTextAlignment];
 		[self setInitialFirstResponder:textField];
-		icon = [NSImage imageNamed:@"net.sf.jumpcut.ghost_scissors_small.png"];
-		if ( [icon isValid] ) {
-			NSRect iconFrame = NSMakeRect( ([self frame].size.width - [icon size].width) / 2, [self frame].size.height - [icon size].height - 24, [icon size].width, [icon size].height);
-			iconView = [[NSImageView alloc] initWithFrame:iconFrame];
-			[iconView setImage:icon];
-			[[self contentView] addSubview:iconView];
-		}
 		return self;
 	}
 	return nil;
